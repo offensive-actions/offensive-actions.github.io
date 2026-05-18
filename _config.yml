@@ -1,2 +1,17 @@
 title: offensive-actions
-description: Personal blog
+description: Blog
+url: https://offensive-actions.github.io
+theme: minima
+
+linkedin_url: https://www.linkedin.com/in/benedikt-haussner
+
+repos:
+  - owner: offensive-actions
+    repo: release-tampering-docs
+    description: Proof of Concepts for malicious maintainers: How to Tamper with Releases built with GitHub Actions Worfklows, presented at fwd:cloudsec Europe 2025 
+  - owner: offensive-actions
+    repo: terraform-provider-statefile-rce
+    description: This terraform provider can be used to get remote code execution by injecting a dummy resource in a writeable state file. 
+  - owner: offensive-actions
+    repo: azure-storage-reverse-shell
+    description: This GitHub Action sends a reverse shell from a runner via Azure Storage Account blobs 

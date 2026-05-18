@@ -2,14 +2,42 @@
 layout: default
 title: offensive-actions
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>offensive-actions</title>
-  </head>
-  <body>
-    <h1>offensive-actions</h1>
-    <p>Site is live. Blog coming soon.</p>
-  </body>
-</html>
+
+<section class="intro">
+  <img src="{{ '/assets/me.jpg' | relative_url }}" alt="Portrait" width="160" height="160">
+  <h1>Hi, I'm <em>Ben</em>.</h1>
+  <p>I like tinkering with technology. I especially enjoy finding ways to use technology in ways that it was not meant to be used.</p>
+  <p>I work as a Red Teamer.</p>
+</section>
+
+<section class="latest-posts">
+  <h2>Latest posts</h2>
+  {% if site.posts.size == 0 %}
+    <p><em>No posts yet — check back soon.</em></p>
+  {% else %}
+    <ul>
+      {% for post in site.posts limit:3 %}
+        <li>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <small>{{ post.date | date: "%Y-%m-%d" }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</section>
+
+<section class="projects">
+  <h2>Projects</h2>
+  <ul>
+    {% for r in site.repos %}
+      <li>
+        <a href="https://github.com/{{ r.owner }}/{{ r.repo }}">{{ r.owner }}/{{ r.repo }}</a>
+        — {{ r.description }}
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="elsewhere">
+  <p>LinkedIn: <a href="{{ site.linkedin_url }}">{{ site.linkedin_url }}</a></p>
+</section>
