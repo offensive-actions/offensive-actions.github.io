@@ -27,7 +27,7 @@ title: offensive-actions
 </section>
 
 <section class="projects">
-  <h2>Projects</h2>
+  <h2>Featured Repositories</h2>
   <table>
     <thead>
       <tr>
@@ -40,7 +40,7 @@ title: offensive-actions
       {% for r in site.repos %}
         <tr>
           <td>
-            <img src="{{ r.image | relative_url }}" alt="" width="96" height="96">
+            <img src="{{ r.image | relative_url }}" alt="">
           </td>
           <td>
             <a href="https://github.com/{{ r.owner }}/{{ r.repo }}">{{ r.owner }}/{{ r.repo }}</a>
