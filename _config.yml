@@ -8,10 +8,13 @@ linkedin_url: https://www.linkedin.com/in/benedikt-haussner
 repos:
   - owner: offensive-actions
     repo: release-tampering-pocs
+    image: /assets/repos/release-tampering-pocs.png
     description: "Proof of Concepts for malicious maintainers: How to Tamper with Releases built with GitHub Actions Workflows, presented at fwd:cloudsec Europe 2025"
   - owner: offensive-actions
     repo: terraform-provider-statefile-rce
+    image: /assets/repos/terraform-provider-statefile-rce.png
     description: "This terraform provider can be used to get remote code execution by injecting a dummy resource in a writeable state file."
   - owner: offensive-actions
     repo: azure-storage-reverse-shell
+    image: /assets/repos/azure-storage-reverse-shell.png
     description: "This GitHub Action sends a reverse shell from a runner via Azure Storage Account blobs"

@@ -28,14 +28,28 @@ title: offensive-actions
 
 <section class="projects">
   <h2>Projects</h2>
-  <ul>
-    {% for r in site.repos %}
-      <li>
-        <a href="https://github.com/{{ r.owner }}/{{ r.repo }}">{{ r.owner }}/{{ r.repo }}</a>
-        — {{ r.description }}
-      </li>
-    {% endfor %}
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Repository</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in site.repos %}
+        <tr>
+          <td>
+            <img src="{{ r.image | relative_url }}" alt="" width="96" height="96">
+          </td>
+          <td>
+            <a href="https://github.com/{{ r.owner }}/{{ r.repo }}">{{ r.owner }}/{{ r.repo }}</a>
+          </td>
+          <td>{{ r.description }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </section>
 
 <section class="elsewhere">
