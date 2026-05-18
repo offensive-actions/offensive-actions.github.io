@@ -7,7 +7,7 @@ linkedin_url: https://www.linkedin.com/in/benedikt-haussner
 
 repos:
   - owner: offensive-actions
-    repo: release-tampering-docs
+    repo: release-tampering-pocs
     description: "Proof of Concepts for malicious maintainers: How to Tamper with Releases built with GitHub Actions Workflows, presented at fwd:cloudsec Europe 2025"
   - owner: offensive-actions
     repo: terraform-provider-statefile-rce
