@@ -77,7 +77,6 @@ title: offensive-actions
         <th></th>
         <th>Repository</th>
         <th>Description</th>
-        <th>⭐ Count</th>
       </tr>
     </thead>
     <tbody>
@@ -87,16 +86,16 @@ title: offensive-actions
             <img src="{{ r.image | relative_url }}" alt="">
           </td>
           <td>
-            <a href="https://github.com/{{ r.owner }}/{{ r.repo }}">{{ r.owner }}/{{ r.repo }}</a>
+            <a href="https://github.com/{{ r.owner }}/{{ r.repo }}">{{ r.owner }}/{{ r.repo }}</a><br>
+            <small>⭐: <span class="star-count" data-owner="{{ r.owner }}" data-repo="{{ r.repo }}">…</span></small>
           </td>
           <td>{{ r.description }}</td>
-          <td class="stars" data-owner="{{ r.owner }}" data-repo="{{ r.repo }}">…</td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
   <script>
-    document.querySelectorAll('td.stars[data-owner][data-repo]').forEach(async (el) => {
+    document.querySelectorAll('.star-count[data-owner][data-repo]').forEach(async (el) => {
       const { owner, repo } = el.dataset;
       try {
         const r = await fetch(`https://api.github.com/repos/${owner}/${repo}`);
