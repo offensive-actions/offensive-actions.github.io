@@ -26,14 +26,46 @@ title: offensive-actions
   {% if site.posts.size == 0 %}
     <p><em>No posts yet — check back soon.</em></p>
   {% else %}
-    <ul>
-      {% for post in site.posts limit:3 %}
-        <li>
-          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          <small>{{ post.date | date: "%Y-%m-%d" }}</small>
-        </li>
-      {% endfor %}
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Post</th>
+          <th>TL;DR</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for post in site.posts limit:3 %}
+          {%- assign img_src = '' -%}
+          {%- assign after_img = post.content | split: '<img ' -%}
+          {%- if after_img.size > 1 -%}
+            {%- assign img_attrs = after_img[1] | split: '/>' | first -%}
+            {%- assign src_split = img_attrs | split: 'src="' -%}
+            {%- if src_split.size > 1 -%}
+              {%- assign img_src = src_split[1] | split: '"' | first -%}
+            {%- endif -%}
+          {%- endif -%}
+
+          {%- assign tldr = '' -%}
+          {%- assign bq_split = post.content | split: '<blockquote>' -%}
+          {%- if bq_split.size > 1 -%}
+            {%- assign bq_inner = bq_split[1] | split: '</blockquote>' | first | strip_html | strip | strip_newlines -%}
+            {%- assign tldr = bq_inner | remove: '🕚 tl;dr' | strip -%}
+          {%- endif -%}
+
+          <tr>
+            <td>
+              {% if img_src != '' %}<img src="{{ img_src | relative_url }}" alt="">{% endif %}
+            </td>
+            <td>
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a><br>
+              <small>{{ post.date | date: "%Y-%m-%d" }}</small>
+            </td>
+            <td>{{ tldr }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   {% endif %}
 </section>
 

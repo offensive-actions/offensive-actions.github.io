@@ -3,6 +3,9 @@ layout: post
 title: "SSRF to Cloud Metadata: A Quick Example Post"
 ---
 
+> 🕚 tl;dr
+> SSRF is the bane of "modern" apps. You can do things with it, and is funny to exploit, but the consequences are dire: you lose access to stuff you should not have put in the cloud to begin with.
+
 I ran into a classic server-side request forgery vulnerability that gave direct access to the instance metadata service. Worth documenting since the path from initial SSRF to credential extraction was unusually clean.
 
 ![Terminal showing SSRF request chain](/assets/posts/ssrf-cloud.jpg)
