@@ -2,9 +2,16 @@
 ---
 @import "minima";
 
+.latest-posts table th:first-child,
+.latest-posts table td:first-child,
+.projects table th:first-child,
+.projects table td:first-child {
+  width: 40%;
+}
+
 .latest-posts table img,
 .projects table img {
-  width: 900px;
+  width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
