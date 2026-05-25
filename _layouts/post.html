@@ -1,0 +1,115 @@
+---
+layout: default
+---
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {{ page.date | date: "%b %-d, %Y" }}
+      </time>
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+
+</article>
+
+<aside class="post-toc" aria-label="Table of contents" hidden>
+  <p class="post-toc__title">{{ page.title | escape }}</p>
+  <p class="post-toc__date">{{ page.date | date: "%b %-d, %Y" }}</p>
+  <nav class="post-toc__nav"></nav>
+</aside>
+
+<script>
+(function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    var aside   = document.querySelector('.post-toc');
+    var nav     = document.querySelector('.post-toc__nav');
+    var content = document.querySelector('.post-content');
+    if (!aside || !nav || !content) return;
+
+    var headings = Array.prototype.slice.call(
+      content.querySelectorAll('h2, h3, h4')
+    );
+    if (headings.length === 0) return;
+
+    // Ensure every heading has an id (kramdown auto_ids covers this, but keep a fallback).
+    headings.forEach(function (h) {
+      if (!h.id) {
+        h.id = h.textContent.trim().toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      }
+    });
+
+    // Build nested <ul> mirroring the heading hierarchy.
+    var root      = document.createElement('ul');
+    var stack     = [root];
+    var prevLevel = 2;
+
+    headings.forEach(function (h) {
+      var level = parseInt(h.tagName[1], 10); // 2, 3 or 4
+
+      if (level > prevLevel) {
+        // Go deeper: nest a new <ul> inside the last <li>.
+        var deeper = document.createElement('ul');
+        var lastLi = stack[stack.length - 1].lastElementChild;
+        if (lastLi) { lastLi.appendChild(deeper); }
+        stack.push(deeper);
+      } else if (level < prevLevel) {
+        // Go shallower: pop back by the level difference.
+        var steps = prevLevel - level;
+        for (var i = 0; i < steps && stack.length > 1; i++) { stack.pop(); }
+      }
+
+      var li = document.createElement('li');
+      var a  = document.createElement('a');
+      a.href        = '#' + h.id;
+      a.textContent = h.textContent;
+      a.dataset.id  = h.id;
+      li.appendChild(a);
+      stack[stack.length - 1].appendChild(li);
+      prevLevel = level;
+    });
+
+    nav.appendChild(root);
+    aside.removeAttribute('hidden');
+
+    // Scrollspy: highlight the topmost visible heading.
+    var activeId = null;
+    var visible  = {};
+
+    function updateActive() {
+      for (var i = 0; i < headings.length; i++) {
+        if (visible[headings[i].id]) {
+          if (headings[i].id === activeId) return;
+          activeId = headings[i].id;
+          nav.querySelectorAll('a').forEach(function (a) {
+            a.classList.toggle('is-active', a.dataset.id === activeId);
+          });
+          var activeLink = nav.querySelector('a.is-active');
+          if (activeLink) { activeLink.scrollIntoView({ block: 'nearest' }); }
+          return;
+        }
+      }
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting; });
+      updateActive();
+    }, { rootMargin: '0px 0px -60% 0px', threshold: 0 });
+
+    headings.forEach(function (h) { observer.observe(h); });
+
+    // Activate the first heading immediately.
+    activeId = headings[0].id;
+    var first = nav.querySelector('a');
+    if (first) { first.classList.add('is-active'); }
+  });
+}());
+</script>

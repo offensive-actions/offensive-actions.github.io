@@ -16,3 +16,79 @@
   object-fit: cover;
   display: block;
 }
+
+/* ── Post table of contents sidebar ─────────────────────────────────────── */
+
+.post-toc {
+  display: none; /* shown only on wide screens via the media query below */
+}
+
+@media (min-width: 1200px) {
+  .post-toc {
+    display: block;
+    position: fixed;
+    top: 80px;
+    right: 2rem;
+    width: 220px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    padding: 0.75rem 1rem;
+    border-left: 2px solid #e8e8e8;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    scrollbar-width: thin;
+  }
+}
+
+.post-toc__title {
+  margin: 0 0 0.2rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  word-break: break-word;
+}
+
+.post-toc__date {
+  margin: 0 0 0.85rem;
+  color: #828282;
+  font-size: 0.78rem;
+}
+
+.post-toc__nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-toc__nav > ul > li > ul {
+  padding-left: 0.85rem;
+}
+
+.post-toc__nav > ul > li > ul > li > ul {
+  padding-left: 0.85rem;
+}
+
+.post-toc__nav a {
+  display: block;
+  padding: 0.18rem 0.3rem 0.18rem 0.5rem;
+  color: #828282;
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  word-break: break-word;
+}
+
+.post-toc__nav a:hover {
+  color: #424242;
+}
+
+.post-toc__nav a.is-active {
+  color: #111;
+  font-weight: 600;
+  border-left-color: #111;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
