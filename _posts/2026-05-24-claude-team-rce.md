@@ -5,10 +5,10 @@ title: "Gone Phishing with Claude Teams: From Deceptive Team Onboarding to RCE"
 
 > 🕚 **tl;dr**
 > 
-> With a $125 investment, and a valid email address for an arbitrary "business domain", an attacker can create a Claude Team.
-> They then can actively invite targets of any domain into that Team or passively have Anthropic ask all current and future Claude users of their own domain to join the Team. In both cases, Anthropic is communicating the invitation, not the attacker.
-> After a victim decides to join the team and uses Claude Code, the attacker can run arbitrary code on the target's machine.
-> The beauty: All the target ever sees are mails and popups from Anthropic, never from the attacker.
+> With a $125 investment, and a valid email address for an arbitrary "business domain", an attacker can create a Claude Team.  
+> They then can actively invite targets of any domain into that Team or passively have Anthropic ask all current and future Claude users of their own domain to join the Team. In both cases, Anthropic is communicating the invitation, not the attacker.  
+> After a victim decides to join the team and uses Claude Code, the attacker can run arbitrary code on the target's machine.  
+> The beauty: All the target ever sees are mails and popups from Anthropic, never from the attacker.  
 > The attack surface: 63% of Dow-30 members are not protected from this attack.
 
 > 🫂
@@ -21,9 +21,9 @@ title: "Gone Phishing with Claude Teams: From Deceptive Team Onboarding to RCE"
 
 > 🧑‍⚖️
 >
-> I am not describing any vulnerabilities in this research. I am merely demonstrating, how an attacker could chain legitimate tools for malicious purposes.
-> During this research, the domain `anthropic-evaluation.com` has been registered for demonstrative purposes. I am not affiliated with the company *Anthropic* or its product *Claude*.
-> I have never used the domain for malicious acts, nor will I ever use it for such. There is no server serving anything, and by the time you are reading this, there is no mail server connected to it. If you are Anthropic and reading this: I really like your tools. I mean no harm. If you want to get possession of the domain `anthropic-evaluation.com`, please reach out and we will arrange the transfer. The domain ownership is not set to be renewed, anyways.
+> I am not describing any vulnerabilities in this research. I am merely demonstrating, how an attacker could chain legitimate tools for malicious purposes.  
+> During this research, the domain `anthropic-evaluation.com` has been registered for demonstrative purposes. I am not affiliated with the company *Anthropic* or its product *Claude*.  
+> I have never used the domain for malicious acts, nor will I ever use it for such. If you are Anthropic and reading this: I really like your tools. I mean no harm. If you want to get possession of the domain `anthropic-evaluation.com`, please reach out and we will arrange the transfer. The domain ownership is not set to be renewed, anyways.
 
 After all the preambles, let's get to work.
 
